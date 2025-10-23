@@ -1,0 +1,58 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+int main() {
+    double a, b, c, d, e, f;
+    std::cout << "input a, b, c, d, e, f:" << std::endl;
+    std::cin >> a >> b >> c >> d >> e >> f;
+
+    // Приводим к квадратному уравнению
+    double A = a - d;
+    double B = b - e;
+    double C = c - f;
+
+    // Устанавливаем 6 знаков после запятой
+    std::cout << std::fixed << std::setprecision(6);
+
+    if (A == 0) {
+        // Уравнение линейное
+        if (B == 0) {
+            if (C == 0) {
+                std::cout << "Бесконечное количество решений" << std::endl;
+            } else {
+                std::cout << "None" << std::endl;
+            }
+        } else {
+            double x = -C / B;
+            double y = a * x * x + b * x + c;
+            std::cout << "(" << x << ";" << y << ")" << std::endl;
+        }
+    } else {
+        // Уравнение квадратное
+
+        // Ищем дискриминант
+        double D;
+        D = B * B - 4 * A * C;
+
+        // Дискрименант больше 0
+        if (D > 0) {
+            double x1 = (-B + sqrt(D)) / (2 * A);
+            double x2 = (-B - sqrt(D)) / (2 * A);
+            double y1 = a * x1 * x1 + b * x1 + c;
+            double y2 = a * x2 * x2 + b * x2 + c;
+            std::cout << "(" << x1 << ";" << y1 << ")" << std::endl;
+            std::cout << "(" << x2 << ";" << y2 << ")" << std::endl;
+        // Дискриминант = 0
+        } else if (D == 0) {
+            double x = (-B / (2 * A));
+            double y = a * x * x + b * x + c;
+            std::cout << "(" << x << ";" << y << ")" << std::endl;
+        // Дискриминант меньше 0
+        } else {
+            std::cout << "None" << std::endl;
+        }
+    }
+
+    return 0;
+}
