@@ -1,0 +1,30 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+int main() {
+    double a;
+
+    // Вводим a
+    std::cout << "input a: ";
+    std::cin >> a;
+
+    // 6 знаков после запятой
+    std::cout << std::fixed << std::setprecision(6);
+
+    // Задаем маленькое число для сравнения с нулем
+    double epsilon = 1e-10;
+
+    // Проверка ОДЗ
+    if (std::abs(sin(2 * a)) < epsilon || std::abs(cos(6 * a)) < epsilon || std::abs(sin(M_PI / 6 - 2 * a)) < epsilon || std::abs(sin(M_PI / 6 + 2 * a)) < epsilon) {
+        std::cout << "Error" << std::endl;
+    } else {
+        double A = (sin(2 * a) * (2 * cos(4 * a) + 1) * (cos(M_PI / 6 - 2 * a) / sin(M_PI / 6 - 2 * a)) * (cos(M_PI / 6 + 2 * a) / sin(M_PI / 6 + 2 * a)));
+        std::cout << "A: " << A << std::endl;
+        double B = sin(6 * a) * (cos(2 * a) / sin(2 * a)) * (sin(6 * a) / cos(6 * a));
+        std::cout << "B: " << B << std::endl;
+        std::cout << "A-B: " << A - B << std::endl;
+    }
+
+    return 0;
+}
